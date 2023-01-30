@@ -1,0 +1,15 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Fur",
+            "value": "White"
+        },
+        {
+            "trait_type": "Eye color",
+            "value": "Blue"
+        }
+    ],
+    "description": "The world's most adorable cat.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmcSM8rxpnmknRu6HX9KWmqG4QJaBfijF3sZeuvSeDfNB7",
+    "name": "Lucky"
+}
