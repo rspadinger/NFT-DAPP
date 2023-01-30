@@ -16,7 +16,6 @@ async function main() {
         ;[signer, signer2] = await ethers.getSigners()
     } else {
         console.log("We are using a remote network!")
-        const contractJson = require("../artifacts/contracts/MyNFT.sol/MyNFT.json")
         signer = new ethers.Wallet(REACT_APP_PRIVATE_KEY, provider)
         signer2 = new ethers.Wallet(REACT_APP_PRIVATE_KEY2, provider)
         contract = await ethers.getContractAt("MyNFT", REACT_APP_CONTRACT_ADDRESS)
@@ -34,10 +33,10 @@ async function main() {
 
     // transfer NFT with Id = 1 to another account => swap signer and signer2 on the method call below
     //if we want to transfer it back, we also need to change the signer => safeTransfer requires :: from == owner && msg.sender == owner
-    contract = await contract.connect(signer)
+    contract = await contract.connect(signer2)
 
     //use this on methods with the same name
-    txn = await contract["safeTransferFrom(address,address,uint256)"](signer.address, signer2.address, 1)
+    txn = await contract["safeTransferFrom(address,address,uint256)"](signer2.address, signer.address, 1)
     txnReceipt = await txn.wait()
 
     console.log("New owner of NFT with Id 1: ", await contract.ownerOf(1))
