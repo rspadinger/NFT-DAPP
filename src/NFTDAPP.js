@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
-import { connectWallet, getCurrentWalletConnected, mintNFT } from "./blockchainTools/blockchainInteraction.js"
+import {
+    connectWallet,
+    getCurrentWalletConnected,
+    mintNFT,
+} from "./blockchainTools/blockchainInteraction.js"
 
-const Minter = () => {
+const NFTDAPP = () => {
     const [walletAddress, setWallet] = useState("")
     const [status, setStatus] = useState("")
     const [name, setName] = useState("")
@@ -58,7 +62,10 @@ const Minter = () => {
             <h1>NFT DAPP</h1>
             <button id="walletButton" onClick={connectWalletPressed}>
                 {walletAddress.length > 0 ? (
-                    "Connected: " + String(walletAddress).substring(0, 6) + "..." + String(walletAddress).substring(38)
+                    "Connected: " +
+                    String(walletAddress).substring(0, 6) +
+                    "..." +
+                    String(walletAddress).substring(38)
                 ) : (
                     <span>Connect Wallet</span>
                 )}
@@ -72,7 +79,11 @@ const Minter = () => {
                     onChange={(e) => setURL(e.target.value)}
                 />
                 <h2>💰 Name: </h2>
-                <input type="text" placeholder="The name of your NFT..." onChange={(e) => setName(e.target.value)} />
+                <input
+                    type="text"
+                    placeholder="The name of your NFT..."
+                    onChange={(e) => setName(e.target.value)}
+                />
                 <h2>✍️ Description: </h2>
                 <input
                     type="text"
@@ -88,4 +99,4 @@ const Minter = () => {
     )
 }
 
-export default Minter
+export default NFTDAPP
