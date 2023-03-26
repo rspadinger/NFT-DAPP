@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    font-size: 16px;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.Minter {
+    border: 4px solid rgba(2, 5, 116, 0.7);
+    padding: 22px;
+    border-radius: 16px;
+    max-width: 80vh;
+    max-height: 80vh;
+    padding: 60px 100px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#container {
+    width: 80vh;
+    border: 4px solid rgba(2, 5, 116, 0.7);
+    min-height: 140px;
+    padding: 32px;
+    position: relative;
+    border-radius: 16px;
+    -webkit-box-align: center;
+    align-items: left;
+    -webkit-box-pack: center;
+    justify-content: left;
+    flex-direction: column;
+    text-align: left;
+    word-break: break-word;
+}
+
+input {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    font-size: 16px;
+    width: 100%;
+    border-color: rgba(2, 5, 116, 0.3);
+    line-height: 32px;
+}
+
+input:focus {
+    outline: none;
+    border-color: rgba(2, 5, 116, 0.7);
+}
+
+#status {
+    color: #020574;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+button {
+    padding: 9px 16px;
+    max-height: 40px;
+    border-color: #020574;
+    border-radius: 8px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    margin-top: -1px;
+}
+
+#title {
+    padding-top: 32px;
+}
+
+.uploadFile {
+    border: 4px dashed rgba(4, 4, 5, 0.1);
+    border-radius: 16px;
+    text-align: center;
+    padding: 32px 60px;
+}
+
+#walletButton {
+    text-align: right;
+    float: right;
+    margin-bottom: 50px;
+    line-height: 16px;
+    background-color: #020574;
+    color: white;
+}
+
+#mintButton {
+    margin-top: 40px;
+    background-color: #020574;
+    color: white;
+}
+
+h2 {
+    color: #020574;
+    display: block;
+    clear: both;
+    font-weight: 400;
+}
+
+h1 {
+    float: left;
+    margin-top: 0px;
+    color: #020574;
+    font-weight: 500;
+}
+
+a {
+    color: #020574;
+}
