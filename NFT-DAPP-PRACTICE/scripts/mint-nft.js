@@ -11,49 +11,49 @@ const tokenURI = "https://gateway.pinata.cloud/ipfs/QmPzekhpuWN2j5yXome5dJYHy2KY
 let provider, signer, signer2, contract, txn, txnReceipt
 
 async function main() {
-    provider = ethers.provider
-    const currentNetwork = await provider.getNetwork()
+    //TODO set the provider and retrive network details => in order to acces the correct chainId :
+    //provider = ...
+    //const currentNetwork = ...
 
     if (currentNetwork.chainId.toString().includes(1337)) {
         console.log("We are using a local network!")
-        contract = await ethers.getContractAt("MyNFT", REACT_APP_CONTRACT_ADDRESS_LOCAL)
-        ;[signer, signer2] = await ethers.getSigners()
+        //TODO create an instance of the NFT contract that has been deployed locally :
+        //contract = ...
+
+        //TODO get the first 2 signers :
+        //;[signer, signer2] = ...
     } else {
         console.log("We are using a remote network!")
-        contract = await ethers.getContractAt("MyNFT", REACT_APP_CONTRACT_ADDRESS)
-        signer = new ethers.Wallet(REACT_APP_PRIVATE_KEY, provider)
-        // we could also use: signer = await ethers.getSigners()
-        signer2 = new ethers.Wallet(REACT_APP_PRIVATE_KEY2, provider)
+        //TODO create an instance of the NFT contract that has been deployed to the Sepolia network :
+        //contract = ...
+
+        //TODO create 2 wallet signers from the 2 private keys specified in the .env file : 
+        //signer = ...
+        //signer2 = ... 
     }
 
-    // mint an NFT to signer2
-    txn = await contract.mintNFT(signer2.address, tokenURI)
-    txnReceipt = await txn.wait()
+    //TODO mint an NFT to signer2 
+    // make sure to wait for the transaction to be included in a block (txn.wait()) before continuing :
 
-    // display how many NFT's (of this specific contract) are owned by the recipient
-    console.log(
-        "Number of NFT's owned by the recipient: ",
-        await contract.balanceOf(signer2.address)
-    )
+    //TODO display how many NFT's (of this specific contract) are owned by the recipient :
+    //console.log("Number of NFT's owned by the recipient: ", ... )
 
-    // display the owner of NFT with Id = 1
-    console.log("Owner of NFT with Id 1: ", await contract.ownerOf(1))
+    //TODO display the owner of NFT with Id = 1 :
+    //console.log("Owner of NFT with Id 1: ", ...)
 
-    // transfer NFT with Id = 1 to another account => swap signer and signer2 on
+    //transfer NFT with Id = 1 to another account => swap signer and signer2 on
     //the method call below. If we want to transfer it back, we also need to
-    //change the signer => safeTransfer requires :: from == owner &&
-    //msg.sender == owner
+    //change the signer => safeTransfer requires : from == owner && msg.sender == owner
     contract = await contract.connect(signer2)
 
-    //use this on methods with the same name
-    txn = await contract["safeTransferFrom(address,address,uint256)"](
-        signer2.address,
-        signer.address,
-        1
-    )
-    txnReceipt = await txn.wait()
+    //TODO transfer NFT with Id = 1 from signer2 to signer - use the "safeTransferFrom" method
+    //careful, safeTransferFrom is defined several times in the inheritance hierarchy => you need to call the
+    //method by specifying the correct function signature: contract["safeTransferFrom(address,..."](arg1,...) :
+    //txn = await ...
+    //txnReceipt = await txn.wait()
 
-    console.log("New owner of NFT with Id 1: ", await contract.ownerOf(1))
+    //TODO display the new owner of the NFT with Id = 1 :
+    //console.log("New owner of NFT with Id 1: ", ...)
 }
 
 main()

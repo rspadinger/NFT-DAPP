@@ -5,8 +5,11 @@ const { REACT_APP_CONTRACT_ADDRESS, REACT_APP_CONTRACT_ADDRESS_LOCAL } = process
 
 let provider, contractAddress, selectedAddress
 ;(async function setContractAddress() {
-    if (window.ethereum) {
-        provider = new ethers.providers.Web3Provider(window.ethereum)
+    //TODO make sure, MetaMask is installed and the global variable "ethereum" is available
+    if (false) {
+        //TODO create a Web3 provider
+        //provider = ...
+
         const currentNetwork = await provider.getNetwork()
 
         if (currentNetwork.chainId.toString().includes(1337)) {
@@ -20,9 +23,8 @@ let provider, contractAddress, selectedAddress
 export const getCurrentWalletConnected = async () => {
     if (window.ethereum) {
         try {
-            const addressArray = await window.ethereum.request({
-                method: "eth_accounts",
-            })
+            //TODO retrieve all MetaMask accounts that have already been connected with this DApp (eth_accounts) :
+            //const addressArray = ...
 
             if (addressArray.length > 0) {
                 selectedAddress = addressArray[0]
@@ -67,9 +69,9 @@ export const getCurrentWalletConnected = async () => {
 export const connectWallet = async () => {
     if (window.ethereum) {
         try {
-            const addressArray = await window.ethereum.request({
-                method: "eth_requestAccounts",
-            })
+            //TODO ask MetaMask to display all accounts in a popup, 
+            //so that you can choose which ones you want to connect with this DApp (eth_requestAccounts) :
+            //const addressArray = ...
 
             if (addressArray.length > 0) {
                 selectedAddress = addressArray[0]
@@ -152,25 +154,21 @@ export const mintNFT = async (name, description, imageUrl) => {
             status: "😢 Something went wrong while uploading your tokenURI.",
         }
     }
+
     const tokenURI = pinataResponse.pinataUrl
     console.log(tokenURI)
 
-    let iface = new ethers.utils.Interface([
-        "function mintNFT(address recipient, string memory tokenURI)",
-    ])
-    const myData = iface.encodeFunctionData("mintNFT", [selectedAddress, tokenURI])
+    //TODO encode the function data for the "mintNFT" function :
+    //const myData = ...
 
-    const transactionParameters = {
-        to: contractAddress,
-        from: selectedAddress,
-        data: myData,
-    }
+    //TODO create a transaction object with the following parameters: from (the currently selected wallet address in MetaMask), 
+    //to (our ERC721 contract) and data (encoded data for the mintNFT function call) :
+    //const transactionParameters = { ... }
 
     try {
-        const txHash = await window.ethereum.request({
-            method: "eth_sendTransaction",
-            params: [transactionParameters],
-        })
+        //TODO send the transaction to MetaMask (eth_sendTransaction) :
+        //const txHash = ...
+
         return {
             success: true,
             status: (

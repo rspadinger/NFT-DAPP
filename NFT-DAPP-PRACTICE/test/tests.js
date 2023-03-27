@@ -6,24 +6,29 @@ const tokenURI = "https://gateway.pinata.cloud/ipfs/QmPzekhpuWN2j5yXome5dJYHy2KY
 
 describe("MyNFT contract", function () {
     async function deployContractFixture() {
-        const [deployer, user] = await ethers.getSigners()
+        //TODO get 2 signers :
+        //const [deployer, user] = ...
 
-        const MyNFTFactory = await ethers.getContractFactory("MyNFT", deployer)
-        const myNFTContract = await MyNFTFactory.deploy()
+        //TODO deploy the MyNFT.sol contract :
+        //const MyNFTFactory = ...
+        //const myNFTContract = ...
 
         return { myNFTContract, deployer, user }
     }
 
     describe("Deployment", function () {
-        it("Should set the right owner", async function () {
-            const { myNFTContract, deployer } = await loadFixture(deployContractFixture)
+        it("Should set the right owner", async function () { 
+            //TODO get the contract and signer (deployer) from the fixture :
+            //const { myNFTContract, deployer } = ...
 
-            expect(await myNFTContract.owner()).to.equal(deployer.address)
+            //TODO make sure, the owner of the contract is the same as the deployer :
+            //expect(...)
         })
 
         it("Should set the right token name", async function () {
             const { myNFTContract } = await loadFixture(deployContractFixture)
-            expect(await myNFTContract.name()).to.equal("MyNFT")
+
+            //TODO make sure, the name of the contract is "MyNFT" :
         })
     })
 
@@ -33,42 +38,15 @@ describe("MyNFT contract", function () {
 
             await myNFTContract.mintNFT(user.address, tokenURI)
 
-            expect(await myNFTContract.ownerOf(1)).to.eq(user.address)
-        })
-
-        it("Should transfer token ownership to user", async function () {
-            const { myNFTContract, deployer, user } = await loadFixture(deployContractFixture)
-
-            await myNFTContract.mintNFT(deployer.address, tokenURI)
-            await myNFTContract["safeTransferFrom(address,address,uint256)"](
-                deployer.address,
-                user.address,
-                1
-            )
-
-            expect(await myNFTContract.ownerOf(1)).to.eq(user.address)
-        })
+            //TODO make sure, the owner of tokenId 1 is user :
+        })        
 
         it("Should return the correct tokenURI", async function () {
             const { myNFTContract, deployer } = await loadFixture(deployContractFixture)
 
             await myNFTContract.mintNFT(deployer.address, tokenURI)
 
-            await expect(await myNFTContract.tokenURI(1)).to.eq(tokenURI)
-        })
-
-        it("Should change token balance of sender after transfer", async function () {
-            const { myNFTContract, deployer, user } = await loadFixture(deployContractFixture)
-
-            await myNFTContract.mintNFT(deployer.address, tokenURI)
-
-            await expect(
-                myNFTContract["safeTransferFrom(address,address,uint256)"](
-                    deployer.address,
-                    user.address,
-                    1
-                )
-            ).to.changeTokenBalance(myNFTContract, deployer.address, -1)
+            //TODO make sure, the tokenURI of the token with Id = 1 corresponds with the value provided for tokenURI :
         })
 
         it("Should change token balance of sender and receiver after transfer", async function () {
@@ -76,13 +54,8 @@ describe("MyNFT contract", function () {
 
             await myNFTContract.mintNFT(deployer.address, tokenURI)
 
-            await expect(
-                myNFTContract["safeTransferFrom(address,address,uint256)"](
-                    deployer.address,
-                    user.address,
-                    1
-                )
-            ).to.changeTokenBalances(myNFTContract, [deployer.address, user.address], [-1, 1])
+            //TODO transfer the token with Id = 1 from deployer to user (using safeTransferFrom)
+            // and make sure, the token balance of the deployer decreases by 1 and the balance for user increases by 1 :            
         })
     })
 
@@ -90,9 +63,8 @@ describe("MyNFT contract", function () {
         it("Should emit the Transfer event on token mint", async function () {
             const { myNFTContract, user } = await loadFixture(deployContractFixture)
 
-            await expect(myNFTContract.mintNFT(user.address, tokenURI))
-                .to.emit(myNFTContract, "Transfer")
-                .withArgs(ethers.constants.AddressZero, user.address, anyValue) // We accept any value for the tokenId
+            //TODO mint a token to user and make sure, the "Transfer" event is emitted with the following arguments =>
+            // from: zero address ; to: user addrss ; value: we know, it is 1, but we want to allow any value here :            
         })
     })
 
@@ -102,8 +74,8 @@ describe("MyNFT contract", function () {
 
             await myNFTContract.mintNFT(deployer.address, tokenURI)
 
-            //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol : 386
-            await expect(myNFTContract.tokenURI(10)).to.be.revertedWith("ERC721: invalid token ID")
+            //TODO call the "tokenURI" function on the contract with an invalid tokenId and make sure,
+            // the function call is reverted witth the following message: "ERC721: invalid token ID" :
         })
     })
 })

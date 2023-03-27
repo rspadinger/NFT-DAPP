@@ -24,15 +24,17 @@ const NFTDAPP = () => {
 
     function addWalletListener() {
         if (window.ethereum) {
-            window.ethereum.on("accountsChanged", (accounts) => {
-                if (accounts.length > 0) {
-                    setWallet(accounts[0])
-                    setStatus("👆🏽 Provide an image url, a name and a description for your NFT.")
-                } else {
-                    setWallet("")
-                    setStatus("🦊 Connect to Metamask using the top right button.")
-                }
-            })
+            //TODO update the wallet address and status message whenever the user changes the account in MetaMask
+            //store the result of the callback function in the variable "accounts" :
+            // ...
+                // if (accounts.length > 0) {
+                //     setWallet(accounts[0])
+                //     setStatus("👆🏽 Provide an image url, a name and a description for your NFT.")
+                // } else {
+                //     setWallet("")
+                //     setStatus("🦊 Connect to Metamask using the top right button.")
+                // }
+            //})
         } else {
             setStatus(
                 <p>
@@ -53,8 +55,8 @@ const NFTDAPP = () => {
     }
 
     const onMintPressed = async () => {
-        const { status } = await mintNFT(name, description, url)
-        setStatus(status)
+        //TODO call the mintNFT function and update the status message :
+        //const { status } = ...        
     }
 
     return (
