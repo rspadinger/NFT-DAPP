@@ -1,12 +1,12 @@
 require("@nomicfoundation/hardhat-toolbox")
 require("dotenv").config()
 
-const { REACT_APP_ALCHEMY_API_URL_SEPOLIA, REACT_APP_PRIVATE_KEY, REACT_APP_ETHERSCAN_API_KEY } =
+const { VITE_ALCHEMY_API_URL, VITE_PRIVATE_KEY, VITE_ETHERSCAN_API_KEY } =
     process.env
 
 module.exports = {
     solidity: {
-        version: "0.8.17",
+        version: "0.8.19",
         settings: {
             optimizer: { enabled: true, runs: 200 },
         },
@@ -14,11 +14,11 @@ module.exports = {
     defaultNetwork: "localhost",
     networks: {
         sepolia: {
-            url: REACT_APP_ALCHEMY_API_URL_SEPOLIA,
-            accounts: [`0x${REACT_APP_PRIVATE_KEY}`],
-        },
+            url: VITE_ALCHEMY_API_URL,
+            accounts: [`0x${VITE_PRIVATE_KEY}`],
+        },        
     },
     etherscan: {
-        apiKey: REACT_APP_ETHERSCAN_API_KEY,
+        apiKey: VITE_ETHERSCAN_API_KEY,
     },
 }

@@ -1,6 +1,6 @@
-const axios = require("axios")
+import axios from "redaxios"
 
-const { REACT_APP_PINATA_KEY, REACT_APP_PINATA_SECRET } = process.env
+const { VITE_PINATA_KEY, VITE_PINATA_SECRET } = import.meta.env
 
 export const pinJSONToIPFS = async (metadata) => {
     const data = JSON.stringify(metadata)
@@ -9,8 +9,8 @@ export const pinJSONToIPFS = async (metadata) => {
         url: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
         headers: {
             "Content-Type": "application/json",
-            pinata_api_key: REACT_APP_PINATA_KEY,
-            pinata_secret_api_key: REACT_APP_PINATA_SECRET,
+            pinata_api_key: VITE_PINATA_KEY,
+            pinata_secret_api_key: VITE_PINATA_SECRET,
         },
         data: data,
     }

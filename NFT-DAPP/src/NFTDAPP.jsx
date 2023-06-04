@@ -3,7 +3,7 @@ import {
     connectWallet,
     getCurrentWalletConnected,
     mintNFT,
-} from "./blockchainTools/blockchainInteraction.js"
+} from "./blockchainTools/blockchainInteraction"
 
 const NFTDAPP = () => {
     const [walletAddress, setWallet] = useState("")

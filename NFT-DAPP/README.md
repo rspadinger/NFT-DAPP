@@ -37,22 +37,22 @@ To run a local Hardhat node, open a command window, select a directory where Har
 
 Every project requires a .env file with various environment variables (not all of them are required for every project).
 The environment variables are the same for a React project and a project that contains a simple script file.
-However, in a React project, the name of the environment variable requires the following prefix: REACT_APP (see below)
+However, in a React project, the name of the environment variable requires the following prefix: VITE_ (see below)
 
 Here are the required environment variables:
 
 //For a React app:
 
-REACT_APP_ALCHEMY_API_URL_RINKEBY = "https://eth-rinkeby.alchemyapi.io/v2/REPLACE_WITH_YOUR_API_KEY"
-REACT_APP_ALCHEMY_API_KEY_RINKEBY = "REPLACE_WITH_YOUR_API_KEY"
-REACT_APP_PRIVATE_KEY = "YOUR PRIVATE KEY FROM A METAMASK ACCOUNT"
-REACT_APP_PRIVATE_KEY2 = "YOUR PRIVATE KEY FROM A DSECOND METAMASK ACCOUNT"
+VITE_ALCHEMY_API_URL = "https://eth-rinkeby.alchemyapi.io/v2/REPLACE_WITH_YOUR_API_KEY"
+VITE_ALCHEMY_API_KEY = "REPLACE_WITH_YOUR_API_KEY"
+VITE_PRIVATE_KEY = "YOUR PRIVATE KEY FROM A METAMASK ACCOUNT"
+VITE_PRIVATE_KEY2 = "YOUR PRIVATE KEY FROM A DSECOND METAMASK ACCOUNT"
 
-REACT_APP_CONTRACT_ADDRESS = ADDRESS_OF_CONTRACT_DEPLOYED_TO_SEPOLIA
-REACT_APP_CONTRACT_ADDRESS_LOCAL = ADDRESS_OF_CONTRACT_DEPLOYED_TO_HARDHAT_OR_GANACHE
+VITE_CONTRACT_ADDRESS = ADDRESS_OF_CONTRACT_DEPLOYED_TO_SEPOLIA
+VITE_CONTRACT_ADDRESS_LOCAL = ADDRESS_OF_CONTRACT_DEPLOYED_TO_HARDHAT_OR_GANACHE
 
-REACT_APP_PINATA_KEY = "YOUR_PINATA_KEY"
-REACT_APP_PINATA_SECRET = "YOUR_PINATA_SECRET"
+VITE_PINATA_KEY = "YOUR_PINATA_KEY"
+VITE_PINATA_SECRET = "YOUR_PINATA_SECRET"
 
 //For a simple script:
 

@@ -1,9 +1,5 @@
-const {
-    REACT_APP_PRIVATE_KEY,
-    REACT_APP_PRIVATE_KEY2,
-    REACT_APP_CONTRACT_ADDRESS,
-    REACT_APP_CONTRACT_ADDRESS_LOCAL,
-} = process.env
+const { VITE_PRIVATE_KEY, VITE_PRIVATE_KEY2, VITE_CONTRACT_ADDRESS, VITE_CONTRACT_ADDRESS_LOCAL } =
+    process.env
 
 // nft-metadata.json uploaded to Pinata => contains 2 properties and an image url (also uploaded to Pinata)
 const tokenURI = "https://gateway.pinata.cloud/ipfs/QmPzekhpuWN2j5yXome5dJYHy2KYHmPBdZ4qKiNbjgqRpz"
@@ -27,12 +23,12 @@ async function main() {
         //TODO create an instance of the NFT contract that has been deployed to the Sepolia network :
         //contract = ...
 
-        //TODO create 2 wallet signers from the 2 private keys specified in the .env file : 
+        //TODO create 2 wallet signers from the 2 private keys specified in the .env file :
         //signer = ...
-        //signer2 = ... 
+        //signer2 = ...
     }
 
-    //TODO mint an NFT to signer2 
+    //TODO mint an NFT to signer2
     // make sure to wait for the transaction to be included in a block (txn.wait()) before continuing :
 
     //TODO display how many NFT's (of this specific contract) are owned by the recipient :

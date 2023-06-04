@@ -1,9 +1,5 @@
-const {
-    REACT_APP_PRIVATE_KEY,
-    REACT_APP_PRIVATE_KEY2,
-    REACT_APP_CONTRACT_ADDRESS,
-    REACT_APP_CONTRACT_ADDRESS_LOCAL,
-} = process.env
+const { VITE_PRIVATE_KEY, VITE_PRIVATE_KEY2, VITE_CONTRACT_ADDRESS, VITE_CONTRACT_ADDRESS_LOCAL } =
+    process.env
 
 // nft-metadata.json uploaded to Pinata => contains 2 properties and an image url (also uploaded to Pinata)
 const tokenURI = "https://gateway.pinata.cloud/ipfs/QmPzekhpuWN2j5yXome5dJYHy2KYHmPBdZ4qKiNbjgqRpz"
@@ -16,14 +12,14 @@ async function main() {
 
     if (currentNetwork.chainId.toString().includes(1337)) {
         console.log("We are using a local network!")
-        contract = await ethers.getContractAt("MyNFT", REACT_APP_CONTRACT_ADDRESS_LOCAL)
+        contract = await ethers.getContractAt("MyNFT", VITE_CONTRACT_ADDRESS_LOCAL)
         ;[signer, signer2] = await ethers.getSigners()
     } else {
         console.log("We are using a remote network!")
-        contract = await ethers.getContractAt("MyNFT", REACT_APP_CONTRACT_ADDRESS)
-        signer = new ethers.Wallet(REACT_APP_PRIVATE_KEY, provider)
+        contract = await ethers.getContractAt("MyNFT", VITE_CONTRACT_ADDRESS)
+        signer = new ethers.Wallet(VITE_PRIVATE_KEY, provider)
         // we could also use: signer = await ethers.getSigners()
-        signer2 = new ethers.Wallet(REACT_APP_PRIVATE_KEY2, provider)
+        signer2 = new ethers.Wallet(VITE_PRIVATE_KEY2, provider)
     }
 
     // mint an NFT to signer2
