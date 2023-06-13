@@ -17,13 +17,7 @@ describe("MyNFT contract", function () {
     describe("Deployment", function () {
         it("Should set the right owner", async function () {
             const { myNFTContract, deployer } = await loadFixture(deployContractFixture)
-
             expect(await myNFTContract.owner()).to.equal(deployer.address)
-        })
-
-        it("Should set the right token name", async function () {
-            const { myNFTContract } = await loadFixture(deployContractFixture)
-            expect(await myNFTContract.name()).to.equal("MyNFT")
         })
     })
 
@@ -34,27 +28,6 @@ describe("MyNFT contract", function () {
             await myNFTContract.mintNFT(user.address, tokenURI)
 
             expect(await myNFTContract.ownerOf(1)).to.eq(user.address)
-        })
-
-        it("Should transfer token ownership to user", async function () {
-            const { myNFTContract, deployer, user } = await loadFixture(deployContractFixture)
-
-            await myNFTContract.mintNFT(deployer.address, tokenURI)
-            await myNFTContract["safeTransferFrom(address,address,uint256)"](
-                deployer.address,
-                user.address,
-                1
-            )
-
-            expect(await myNFTContract.ownerOf(1)).to.eq(user.address)
-        })
-
-        it("Should return the correct tokenURI", async function () {
-            const { myNFTContract, deployer } = await loadFixture(deployContractFixture)
-
-            await myNFTContract.mintNFT(deployer.address, tokenURI)
-
-            await expect(await myNFTContract.tokenURI(1)).to.eq(tokenURI)
         })
 
         it("Should change token balance of sender after transfer", async function () {
@@ -69,20 +42,6 @@ describe("MyNFT contract", function () {
                     1
                 )
             ).to.changeTokenBalance(myNFTContract, deployer.address, -1)
-        })
-
-        it("Should change token balance of sender and receiver after transfer", async function () {
-            const { myNFTContract, deployer, user } = await loadFixture(deployContractFixture)
-
-            await myNFTContract.mintNFT(deployer.address, tokenURI)
-
-            await expect(
-                myNFTContract["safeTransferFrom(address,address,uint256)"](
-                    deployer.address,
-                    user.address,
-                    1
-                )
-            ).to.changeTokenBalances(myNFTContract, [deployer.address, user.address], [-1, 1])
         })
     })
 

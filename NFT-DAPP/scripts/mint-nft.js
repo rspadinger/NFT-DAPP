@@ -17,8 +17,9 @@ async function main() {
     } else {
         console.log("We are using a remote network!")
         contract = await ethers.getContractAt("MyNFT", VITE_CONTRACT_ADDRESS)
-        signer = new ethers.Wallet(VITE_PRIVATE_KEY, provider)
-        // we could also use: signer = await ethers.getSigners()
+        ;[signer] = await ethers.getSigners()
+        //we could also use the following:
+        //signer = new ethers.Wallet(VITE_PRIVATE_KEY, provider)
         signer2 = new ethers.Wallet(VITE_PRIVATE_KEY2, provider)
     }
 

@@ -1,8 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox")
 require("dotenv").config()
 
-const { VITE_ALCHEMY_API_URL, VITE_PRIVATE_KEY, VITE_ETHERSCAN_API_KEY } =
-    process.env
+const { VITE_ALCHEMY_API_URL, VITE_PRIVATE_KEY, VITE_ETHERSCAN_API_KEY } = process.env
 
 module.exports = {
     solidity: {
@@ -16,7 +15,7 @@ module.exports = {
         sepolia: {
             url: VITE_ALCHEMY_API_URL,
             accounts: [`0x${VITE_PRIVATE_KEY}`],
-        },        
+        },
     },
     etherscan: {
         apiKey: VITE_ETHERSCAN_API_KEY,
