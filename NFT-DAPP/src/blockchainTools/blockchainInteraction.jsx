@@ -1,10 +1,12 @@
 import { ethers } from "ethers"
 import { pinJSONToIPFS } from "./pinata"
+import contractJson from "../MyNFT.json"
 
-const { VITE_CONTRACT_ADDRESS, VITE_CONTRACT_ADDRESS_LOCAL } = import.meta.env
+const { VITE_CONTRACT_ADDRESS, VITE_CONTRACT_ADDRESS_LOCAL, VITE_PRIVATE_KEY } = import.meta.env
 
-let provider, contractAddress, selectedAddress
-;(async function setContractAddress() {
+let provider, signer, contractAddress, contract, selectedAddress
+
+async function init() {
     if (window.ethereum) {
         provider = new ethers.providers.Web3Provider(window.ethereum)
         const currentNetwork = await provider.getNetwork()
@@ -14,8 +16,15 @@ let provider, contractAddress, selectedAddress
         } else {
             contractAddress = VITE_CONTRACT_ADDRESS
         }
+
+        // the following is not required for this example => only required if we want to call
+        // a function directly on a contract instance
+        signer = new ethers.Wallet(VITE_PRIVATE_KEY, provider)
+        contract = new ethers.Contract(contractAddress, contractJson.abi, signer)
     }
-})()
+}
+
+await init()
 
 export const getCurrentWalletConnected = async () => {
     if (window.ethereum) {
@@ -171,6 +180,11 @@ export const mintNFT = async (name, description, imageUrl) => {
             method: "eth_sendTransaction",
             params: [transactionParameters],
         })
+
+        // second option: call function directly on contract instance => no confirmation in Metamask
+        //let txn = await contract.mintNFT(selectedAddress, tokenURI)
+        //let txnReceipt = await txn.wait()
+
         return {
             success: true,
             status: (

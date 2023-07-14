@@ -13,23 +13,8 @@ body {
     font-size: 16px;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-.Minter {
-    border: 4px solid rgba(2, 5, 116, 0.7);
-    padding: 22px;
-    border-radius: 16px;
-    max-width: 80vh;
-    max-height: 80vh;
-    padding: 60px 100px;
-    margin: 0 auto;
-    text-align: left;
-}
-
 #container {
-    width: 80vh;
+    width: 85vh;
     border: 4px solid rgba(2, 5, 116, 0.7);
     min-height: 140px;
     padding: 32px;
@@ -42,6 +27,7 @@ code {
     flex-direction: column;
     text-align: left;
     word-break: break-word;
+    background-color: #e0ffff;
 }
 
 input {
@@ -49,10 +35,11 @@ input {
     border-right-style: hidden;
     border-left-style: hidden;
     border-bottom-style: groove;
-    font-size: 16px;
+    font-size: 19px;
     width: 100%;
     border-color: rgba(2, 5, 116, 0.3);
     line-height: 32px;
+    background-color: #e0ffff;
 }
 
 input:focus {
@@ -62,7 +49,7 @@ input:focus {
 
 #status {
     color: #020574;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 

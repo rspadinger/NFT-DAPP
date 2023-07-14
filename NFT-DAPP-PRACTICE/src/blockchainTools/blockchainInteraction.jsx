@@ -1,10 +1,12 @@
 import { ethers } from "ethers"
 import { pinJSONToIPFS } from "./pinata"
+import contractJson from "../MyNFT.json"
 
-const { VITE_CONTRACT_ADDRESS, VITE_CONTRACT_ADDRESS_LOCAL } = import.meta.env
+const { VITE_CONTRACT_ADDRESS, VITE_CONTRACT_ADDRESS_LOCAL, VITE_PRIVATE_KEY } = import.meta.env
 
-let provider, contractAddress, selectedAddress
-;(async function setContractAddress() {
+let provider, signer, contractAddress, contract, selectedAddress
+
+async function init() {
     //TODO make sure, MetaMask is installed and the global variable "ethereum" is available
     if (false) {
         //TODO create a Web3 provider
@@ -17,8 +19,15 @@ let provider, contractAddress, selectedAddress
         } else {
             contractAddress = VITE_CONTRACT_ADDRESS
         }
+
+        // the following is not required for this example => only required if we want to call
+        // a function directly on a contract instance
+        signer = new ethers.Wallet(VITE_PRIVATE_KEY, provider)
+        contract = new ethers.Contract(contractAddress, contractJson.abi, signer)
     }
-})()
+}
+
+await init()
 
 export const getCurrentWalletConnected = async () => {
     if (window.ethereum) {

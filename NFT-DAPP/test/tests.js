@@ -61,7 +61,7 @@ describe("MyNFT contract", function () {
 
             await myNFTContract.mintNFT(deployer.address, tokenURI)
 
-            //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol : 386
+            //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/docs-v4.x/contracts/token/ERC721/ERC721.sol : 386
             await expect(myNFTContract.tokenURI(10)).to.be.revertedWith("ERC721: invalid token ID")
         })
     })
